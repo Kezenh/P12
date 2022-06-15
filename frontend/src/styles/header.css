@@ -1,0 +1,23 @@
+header {
+    background: black;
+    height: 91px;
+    display: flex;
+}
+
+.logo {
+    height: 61px;
+    margin: 19px 0 14px 29px;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 36px 87px 31px 149px;
+}
+
+.link {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+}
