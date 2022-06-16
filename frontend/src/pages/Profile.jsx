@@ -5,12 +5,14 @@ import fetchAverageSessionsDatas from "../services/average"
 import fetchPerformanceDatas from "../services/performance"
 import "../styles/profile.css"
 import Vertical from "../components/Vertical"
+import fire from "../assets/fire.png"
+import chicken from "../assets/chicken.png"
+import apple from "../assets/apple.png"
+import burger from "../assets/burger.png"
 
 function Profile() {
     const userId = 18
     const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [age, setAge] = useState("")
     const [score, setScore] = useState("")
     const [calorieCount, setCalorieCount] = useState("")
     const [proteinCount, setProteinCount] = useState("")
@@ -24,8 +26,6 @@ function Profile() {
     async function setUser() {
         const userDatas = await fetchUserDatas(18)
         setFirstName(userDatas.userInfos.firstName)
-        setLastName(userDatas.userInfos.lastName)
-        setAge(userDatas.userInfos.age)
         setScore(userDatas.score)
         setCalorieCount(userDatas.keyData.calorieCount)
         setProteinCount(userDatas.keyData.proteinCount)
@@ -58,53 +58,83 @@ function Profile() {
         <div className="profile">
             <Vertical />
             <div>
-                <section>
-                    <h2>Infos utilisateurs :</h2>
-                    <div>{`Prénom : ${firstName}`}</div>
-                    <div>{`Nom : ${lastName}`}</div>
-                    <div>{`Age : ${age}`}</div>
-                    <div>{`Score : ${score}`}</div>
-                    <div>{`Calories : ${calorieCount}`}</div>
-                    <div>{`Proteines : ${proteinCount}`}</div>
-                    <div>{`Carbohydrates : ${carbohydrateCount}`}</div>
-                    <div>{`Lipides : ${lipidCount}`}</div>
-                </section>
-                <section className="grey">
-                    <h2>Activité quotidienne :</h2>
-                    {sessions.map((session, index) => {
-                        return (
-                            <div key={index} className="session">
-                                <p>{`Session ${index + 1} :`}</p>
-                                <p className="sessionDetail">{`Day : ${session.day}`}</p>
-                                <p className="sessionDetail">{`Kilogrammes : ${session.kilogram}`}</p>
-                                <p className="sessionDetail">{`Calories : ${session.calories}`}</p>
+                <div className="welcome">
+                    <div className="helloFirstName">
+                        <p className="hello">Bonjour</p>
+                        <p className="firstName">{firstName}</p>
+                    </div>
+                    <p className="congratulation">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+                </div>
+                <div className="datas">
+                    <div className="graphs">
+                        <div className="dailyActivity">
+                            {sessions.map((session, index) => {
+                                return (
+                                    <div key={index}>
+                                        <p>{`Session ${index + 1} :`}</p>
+                                        <p>{`Day : ${session.day}`}</p>
+                                        <p>{`Kilogrammes : ${session.kilogram}`}</p>
+                                        <p>{`Calories : ${session.calories}`}</p>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div className="smallGraphs">
+                            <div className="sessionAverage">
+                                {averages.map((average, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <p>{`Session average ${index + 1} :`}</p>
+                                            <p>{`Day : ${average.day}`}</p>
+                                            <p>{`Session length : ${average.sessionLength}`}</p>
+                                        </div>
+                                    )
+                                })}
                             </div>
-                        )
-                    })}
-                </section>
-                <section>
-                    <h2>Durée sessions :</h2>
-                    {averages.map((average, index) => {
-                        return (
-                            <div key={index} className="session">
-                                <p>{`Session average ${index + 1} :`}</p>
-                                <p className="sessionDetail">{`Day : ${average.day}`}</p>
-                                <p className="sessionDetail">{`Session length : ${average.sessionLength}`}</p>
+                            <div className="performance">
+                                {activitiesValues.map((activity, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <p>{`Activity ${index + 1} : ${activitiesKind[index + 1]}`}</p>
+                                            <p>{`Value : ${activity.value}`}</p>
+                                        </div>
+                                    )
+                                })}
                             </div>
-                        )
-                    })}
-                </section>
-                <section className="grey">
-                    <h2>Performance :</h2>
-                    {activitiesValues.map((activity, index) => {
-                        return (
-                            <div key={index} className="session">
-                                <p>{`Activity ${index + 1} : ${activitiesKind[index + 1]}`}</p>
-                                <p>{`Value : ${activity.value}`}</p>
+                            <div className="score">{`Score : ${score}`}</div>
+                        </div>
+                    </div>
+                    <div className="nutrients">
+                        <div className="nutrient">
+                            <img className="nutrientImg" src={fire} alt="fire" />
+                            <div className="nutrientDetails">
+                                <p className="nutrientQuantity">{`${(calorieCount / 1000).toFixed(3).replace(".", ',')}kCal`}</p>
+                                <p className="nutrientName">Calories</p>
                             </div>
-                        )
-                    })}
-                </section>
+                        </div>
+                        <div className="nutrient">
+                            <img className="nutrientImg" src={chicken} alt="chicken" />
+                            <div className="nutrientDetails">
+                                <p className="nutrientQuantity">{`${proteinCount}g`}</p>
+                                <p className="nutrientName">Proteines</p>
+                            </div>
+                        </div>
+                        <div className="nutrient">
+                            <img className="nutrientImg" src={apple} alt="apple" />
+                            <div className="nutrientDetails">
+                                <p className="nutrientQuantity">{`${carbohydrateCount}g`}</p>
+                                <p className="nutrientName">Glucides</p>
+                            </div>
+                        </div>
+                        <div className="nutrient">
+                            <img className="nutrientImg" src={burger} alt="burger" />
+                            <div className="nutrientDetails">
+                                <p className="nutrientQuantity">{`${lipidCount}g`}</p>
+                                <p className="nutrientName">Calories</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

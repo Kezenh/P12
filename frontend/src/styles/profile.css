@@ -3,8 +3,81 @@
     padding: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
+    box-sizing: border-box;
 }
 
 .profile {
     display: flex;
+}
+
+.welcome {
+    margin: 65px 0 0 107px;
+}
+
+.hello {
+    font-size: 48px;
+    margin-right: 15px;
+}
+
+.firstName {
+    font-size: 48px;
+    color: rgba(230, 0, 0, 1);
+}
+
+.congratulation {
+    font-weight: 400;
+}
+
+.helloFirstName {
+    display: flex;
+    margin: 0 0 25px 0;
+}
+
+.datas {
+    margin: 77px 90px 0 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.smallGraphs {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0 0 0;
+}
+
+.dailyActivity {
+    display: flex;
+    background: #FBFBFB;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 5px;
+    padding: 24px 26px 23px 32px;
+}
+
+.nutrient {
+    background: #FBFBFB;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 5px;
+    margin: 0 0 39px 0;
+    width: 258px;
+    height: 124px;
+    display: flex;
+    align-items: center;
+}
+
+.nutrientImg {
+    width: 60px;
+    height: 60px;
+    margin: 0 24px 0 32px;
+}
+
+.nutrientQuantity {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.nutrientName {
+    color: rgba(116, 121, 140, 1);
+    font-size: 14px;
+    font-weight: 500;
 }
