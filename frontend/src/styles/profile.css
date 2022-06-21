@@ -52,6 +52,16 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
     border-radius: 5px;
     padding: 24px 26px 23px 32px;
+    width: 835px;
+    height: 320px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dailyActivityLegend {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .nutrient {
@@ -80,4 +90,38 @@
     color: rgba(116, 121, 140, 1);
     font-size: 14px;
     font-weight: 500;
+}
+
+.legend {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 32px;
+}
+
+.legendText {
+    margin: 0 0 0 10px;
+    color: #74798C;
+    font-size: 14px;
+}
+
+.customTooltip {
+    background: #E60000;
+    width: 39px;
+    height: 63px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0 4px 0;
+}
+
+.customTooltipText {
+    font-size: 7px;
+    color: white;
+    line-height: 24px;
+}
+
+ul {
+    display: flex;
 }
