@@ -105,7 +105,7 @@
     font-size: 14px;
 }
 
-.customTooltip {
+.customTooltipDaily {
     background: #E60000;
     width: 39px;
     height: 63px;
@@ -116,7 +116,7 @@
     padding: 4px 0 4px 0;
 }
 
-.customTooltipText {
+.customTooltipTextDaily {
     font-size: 7px;
     color: white;
     line-height: 24px;
@@ -124,4 +124,35 @@
 
 ul {
     display: flex;
+}
+
+.sessionAverage {
+    width: 258px;
+    height: 263px;
+    background: #FF0000;
+    padding: 29px 12px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.customTooltipAverage {
+    background: white;
+    width: 39px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customTooltipTextAverage {
+    font-size: 8px;
+    color: black;
+    line-height: 24px;
+}
+
+.averageTitle {
+    width: 147px;
+    height: 48px;
+    color: white;
 }

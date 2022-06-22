@@ -1,5 +1,5 @@
-import { useState, useEffect, PureComponent } from "react"
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { useState, useEffect } from "react"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line } from 'recharts'
 import fetchUserDatas from "../services/user"
 import fetchActivityDatas from "../services/activity"
 import fetchAverageSessionsDatas from "../services/average"
@@ -45,7 +45,33 @@ function Profile() {
     }
 
     async function setAverageSessions() {
-        setAverages(await fetchAverageSessionsDatas(userId))
+        let averages = await await fetchAverageSessionsDatas(userId)
+        averages.map((average, index) => {
+            switch (average.day) {
+                case 1:
+                    average.day = "L"
+                    break
+                case 2:
+                    average.day = "M"
+                    break
+                case 3:
+                    average.day = "M"
+                    break
+                case 4:
+                    average.day = "J"
+                    break
+                case 5:
+                    average.day = "V"
+                    break
+                case 6:
+                    average.day = "S"
+                    break
+                case 7:
+                    average.day = "D"
+                    break
+            }
+        })
+        setAverages(averages)
     }
 
     async function setPerformance() {
@@ -54,15 +80,36 @@ function Profile() {
         setActivitiesValues(performanceDatas.data)
     }
 
-    function customTooltip({ payload }) {
+    function customTooltipDaily({ payload }) {
         if (payload && payload.length) {
             return (
-                <div className="customTooltip">
-                    <p className="customTooltipText">{`${payload[0].value}kg`}</p>
-                    <p className="customTooltipText">{`${payload[1].value}Kcal`}</p>
+                <div className="customTooltipDaily">
+                    <p className="customTooltipTextDaily">{`${payload[0].value}kg`}</p>
+                    <p className="customTooltipTextDaily">{`${payload[1].value}Kcal`}</p>
                 </div>
             )
         }
+    }
+
+    function customTooltipAverage({ payload }) {
+        if (payload && payload.length) {
+            return (
+                <div className="customTooltipAverage">
+                    <p className="customTooltipTextAverage">{`${payload[0].value} min`}</p>
+                </div>
+            )
+        }
+    }
+
+    function customizedActiveDot(props) {
+        const { cx, cy } = props;
+        return (
+            <svg x={cx - 10} y={cy - 10} className="dot" width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M9 13.8607C11.2091 13.8607 13 12.0809 13 9.88545C13 7.68999 11.2091 5.91022 9 5.91022C6.79086 5.91022 5 7.68999 5 9.88545C5 12.0809 6.79086 13.8607 9 13.8607Z" fill="white" />
+                <path d="M9 16.3607C12.5752 16.3607 15.5 13.4762 15.5 9.88545C15.5 6.29466 12.5752 3.41022 9 3.41022C5.42481 3.41022 2.5 6.29466 2.5 9.88545C2.5 13.4762 5.42481 16.3607 9 16.3607Z" stroke="white" strokeOpacity="0.198345" strokeWidth="5" />
+            </svg>
+
+        )
     }
 
     useEffect(() => {
@@ -112,22 +159,23 @@ function Profile() {
                                 <CartesianGrid strokeDasharray="2" vertical={false} />
                                 <XAxis dataKey="index" tickLine={false} tickMargin={16} tick={{ fill: '#9B9EAC' }} axisLine={false} />
                                 <YAxis orientation="right" domain={['dataMin - 2', 'dataMax + 2']} tickLine={false} axisLine={false} tick={{ fill: '#9B9EAC' }} />
-                                <Tooltip content={customTooltip} />
+                                <Tooltip content={customTooltipDaily} />
                                 <Bar dataKey="kilogram" fill="#282D30" barSize={7} radius={[3, 3, 0, 0]} />
                                 <Bar dataKey="kcal" fill="#E60000" barSize={7} radius={[3, 3, 0, 0]} />
                             </BarChart>
                         </div>
                         <div className="smallGraphs">
                             <div className="sessionAverage">
-                                {averages.map((average, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <p>{`Session average ${index + 1} :`}</p>
-                                            <p>{`Day : ${average.day}`}</p>
-                                            <p>{`Session length : ${average.sessionLength}`}</p>
-                                        </div>
-                                    )
-                                })}
+                                <p className="averageTitle">Durée moyenne des sessions</p>
+                                <LineChart
+                                    width={231}
+                                    height={140}
+                                    data={averages}
+                                >
+                                    <XAxis tickLine={false} axisLine={false} dataKey="day" tick={{ fill: '#FFFFFF' }} />
+                                    <Tooltip content={customTooltipAverage} />
+                                    <Line strokeWidth={2} type="monotone" dataKey="sessionLength" stroke="#FFFFFF" activeDot={customizedActiveDot} dot={false} />
+                                </LineChart>
                             </div>
                             <div className="performance">
                                 {activitiesValues.map((activity, index) => {
