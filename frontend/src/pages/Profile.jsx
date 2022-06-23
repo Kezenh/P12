@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, Radar, RadarChart, PolarGrid, PolarAngleAxis, PieChart, Pie, Cell } from 'recharts'
 import fetchUserDatas from "../services/user"
 import fetchActivityDatas from "../services/activity"
 import fetchAverageSessionsDatas from "../services/average"
@@ -22,13 +22,13 @@ function Profile() {
     const [lipidCount, setLipidCount] = useState("")
     const [sessions, setSessions] = useState([])
     const [averages, setAverages] = useState([])
-    const [activitiesKind, setActivitiesKind] = useState([])
-    const [activitiesValues, setActivitiesValues] = useState([])
+    const [activities, setActivities] = useState([])
 
     async function setUser() {
         const userDatas = await fetchUserDatas(18)
         setFirstName(userDatas.userInfos.firstName)
-        setScore(userDatas.score)
+        let score = [{ value: userDatas.score }, { value: 1 - userDatas.score }]
+        setScore(score)
         setCalorieCount(userDatas.keyData.calorieCount)
         setProteinCount(userDatas.keyData.proteinCount)
         setcarbohydrateCount(userDatas.keyData.carbohydrateCount)
@@ -69,15 +69,42 @@ function Profile() {
                 case 7:
                     average.day = "D"
                     break
+                default:
+                    average.day = "?"
+                    break
             }
         })
         setAverages(averages)
     }
 
     async function setPerformance() {
-        const performanceDatas = await fetchPerformanceDatas(userId)
-        setActivitiesKind(performanceDatas.kind)
-        setActivitiesValues(performanceDatas.data)
+        let activities = await fetchPerformanceDatas(userId)
+        activities.data.map((data, index) => {
+            switch (data.kind) {
+                case 1:
+                    data.kind = "Cardio"
+                    break
+                case 2:
+                    data.kind = "Energie"
+                    break
+                case 3:
+                    data.kind = "Endurance"
+                    break
+                case 4:
+                    data.kind = "Force"
+                    break
+                case 5:
+                    data.kind = "Vitesse"
+                    break
+                case 6:
+                    data.kind = "Intensité"
+                    break
+                default:
+                    data.kind = "?"
+                    break
+            }
+        })
+        setActivities(activities)
     }
 
     function customTooltipDaily({ payload }) {
@@ -178,16 +205,47 @@ function Profile() {
                                 </LineChart>
                             </div>
                             <div className="performance">
-                                {activitiesValues.map((activity, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <p>{`Activity ${index + 1} : ${activitiesKind[index + 1]}`}</p>
-                                            <p>{`Value : ${activity.value}`}</p>
-                                        </div>
-                                    )
-                                })}
+                                <RadarChart
+                                    startAngle={-150}
+                                    endAngle={210}
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius="80%"
+                                    data={activities.data}
+                                    width={258}
+                                    height={225}
+                                    margin={{
+                                        top: 0,
+                                        right: 0,
+                                        bottom: 0,
+                                        left: 0
+                                    }}
+                                >
+                                    <PolarGrid />
+                                    <PolarAngleAxis dataKey="kind" tick={{ fill: '#FFFFFF', fontSize: 12 }} />
+                                    <Radar name={firstName} dataKey="value" fill="#FF0101" fillOpacity={0.7} />
+                                </RadarChart>
                             </div>
-                            <div className="score">{`Score : ${score}`}</div>
+                            <div className="score">
+                                <p className="scoreTitle">Score</p>
+                                {score[0] === undefined ?
+                                    <p></p> :
+                                    <p className="scoreValue">{`${score[0].value * 100}%`}</p>
+                                }
+                                <p className="scoreText">de votre objectif</p>
+                                <PieChart width={300} height={300}>
+                                    <Pie dataKey="value" data={score} cx="50%" cy="50%" innerRadius={85} outerRadius={95} startAngle={90} endAngle={450} label={false}>
+                                        {score[0] === undefined ?
+                                            <p></p> :
+                                            score.map((data, index) => (
+                                                index === 0 ?
+                                                    <Cell key={`cell-${index}`} fill="#FF0000" /> :
+                                                    <Cell key={`cell-${index}`} fill="#FBFBFB" />
+                                            ))
+                                        }
+                                    </Pie>
+                                </PieChart>
+                            </div>
                         </div>
                     </div>
                     <div className="nutrients">

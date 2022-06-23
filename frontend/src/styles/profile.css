@@ -134,6 +134,8 @@ ul {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 5px;
 }
 
 .customTooltipAverage {
@@ -155,4 +157,47 @@ ul {
     width: 147px;
     height: 48px;
     color: white;
+}
+
+.performance {
+    width: 258px;
+    height: 263px;
+    background: #282D30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 5px;
+}
+
+.score {
+    width: 258px;
+    height: 263px;
+    background: #FBFBFB;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreTitle {
+    font-size: 15px;
+    margin: -226px 185px 0 0;
+    position: absolute;
+}
+
+.scoreValue {
+    font-size: 24px;
+    position: absolute;
+}
+
+.scoreText {
+    position: absolute;
+    margin: 80px 0 0 0;
+    font-size: 16px;
+    color: #74798C;
+    width: 70px;
+    line-height: 26px;
+    text-align: center;
 }
