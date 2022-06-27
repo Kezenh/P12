@@ -1,7 +1,7 @@
 .vertical {
     background-color: black;
     width: 117px;
-    height: 933px;
+    min-height: 100vh;
 }
 
 .copyright {

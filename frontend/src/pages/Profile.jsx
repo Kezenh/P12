@@ -38,7 +38,7 @@ function Profile() {
     async function setActivity() {
         let sessions = await fetchActivityDatas(userId)
         sessions.map((session, index) => {
-            session.kcal = session.calories / 10
+            session.kcal = session.calories
             session.index = index + 1
         })
         setSessions(sessions)
@@ -149,7 +149,7 @@ function Profile() {
     return (
         <div className="profile">
             <Vertical />
-            <div>
+            <div className="profileBody">
                 <div className="welcome">
                     <div className="helloFirstName">
                         <p className="hello">Bonjour</p>
@@ -173,7 +173,7 @@ function Profile() {
                                         <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fillRule="evenodd" clipRule="evenodd" d="M4 8C6.20914 8 8 6.20914 8 4C8 1.79086 6.20914 0 4 0C1.79086 0 0 1.79086 0 4C0 6.20914 1.79086 8 4 8Z" fill="#E60000" />
                                         </svg>
-                                        <p className="legendText">Calories brûlées (kCal)</p>
+                                        <p className="legendText">Calories brûlées (cal)</p>
                                     </li>
                                 </ul>
                             </div>
@@ -185,7 +185,7 @@ function Profile() {
                             >
                                 <CartesianGrid strokeDasharray="2" vertical={false} />
                                 <XAxis dataKey="index" tickLine={false} tickMargin={16} tick={{ fill: '#9B9EAC' }} axisLine={false} />
-                                <YAxis orientation="right" domain={['dataMin - 2', 'dataMax + 2']} tickLine={false} axisLine={false} tick={{ fill: '#9B9EAC' }} />
+                                <YAxis orientation="right" tickLine={false} axisLine={false} tick={{ fill: '#9B9EAC' }} tickCount={20} />
                                 <Tooltip content={customTooltipDaily} />
                                 <Bar dataKey="kilogram" fill="#282D30" barSize={7} radius={[3, 3, 0, 0]} />
                                 <Bar dataKey="kcal" fill="#E60000" barSize={7} radius={[3, 3, 0, 0]} />
