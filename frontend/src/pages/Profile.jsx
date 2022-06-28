@@ -6,10 +6,7 @@ import fetchAverageSessionsDatas from "../services/average"
 import fetchPerformanceDatas from "../services/performance"
 import "../styles/profile.css"
 import Vertical from "../components/Vertical"
-import fire from "../assets/fire.png"
-import chicken from "../assets/chicken.png"
-import apple from "../assets/apple.png"
-import burger from "../assets/burger.png"
+import Nutrient from "../components/Nutrient"
 
 function Profile() {
 
@@ -249,34 +246,10 @@ function Profile() {
                         </div>
                     </div>
                     <div className="nutrients">
-                        <div className="nutrient">
-                            <img className="nutrientImg" src={fire} alt="fire" />
-                            <div className="nutrientDetails">
-                                <p className="nutrientQuantity">{`${(calorieCount / 1000).toFixed(3).replace(".", ',')}kCal`}</p>
-                                <p className="nutrientName">Calories</p>
-                            </div>
-                        </div>
-                        <div className="nutrient">
-                            <img className="nutrientImg" src={chicken} alt="chicken" />
-                            <div className="nutrientDetails">
-                                <p className="nutrientQuantity">{`${proteinCount}g`}</p>
-                                <p className="nutrientName">Proteines</p>
-                            </div>
-                        </div>
-                        <div className="nutrient">
-                            <img className="nutrientImg" src={apple} alt="apple" />
-                            <div className="nutrientDetails">
-                                <p className="nutrientQuantity">{`${carbohydrateCount}g`}</p>
-                                <p className="nutrientName">Glucides</p>
-                            </div>
-                        </div>
-                        <div className="nutrient">
-                            <img className="nutrientImg" src={burger} alt="burger" />
-                            <div className="nutrientDetails">
-                                <p className="nutrientQuantity">{`${lipidCount}g`}</p>
-                                <p className="nutrientName">Calories</p>
-                            </div>
-                        </div>
+                        <Nutrient src={require("../assets/fire.png")} name="Calories" quantity={`${(calorieCount / 1000).toFixed(3).replace(".", ',')}kCal`} />
+                        <Nutrient src={require("../assets/chicken.png")} name="Proteines" quantity={`${proteinCount}g`} />
+                        <Nutrient src={require("../assets/apple.png")} name="Glucides" quantity={`${carbohydrateCount}g`} />
+                        <Nutrient src={require("../assets/burger.png")} name="Lipides" quantity={`${lipidCount}g`} />
                     </div>
                 </div>
             </div>

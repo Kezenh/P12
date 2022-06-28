@@ -1,0 +1,40 @@
+.nutrient {
+    background: #FBFBFB;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 5px;
+    margin: 0 0 39px 0;
+    width: 258px;
+    height: 124px;
+    display: flex;
+    align-items: center;
+}
+
+.nutrientImg {
+    width: 60px;
+    height: 60px;
+    margin: 0 24px 0 32px;
+}
+
+.nutrientQuantity {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.nutrientName {
+    color: rgba(116, 121, 140, 1);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1439px) {
+    .nutrient {
+        background: #FBFBFB;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+        border-radius: 5px;
+        margin: 0 15px 0 0;
+        width: 200px;
+        height: 124px;
+        display: flex;
+        align-items: center;
+    }
+}
