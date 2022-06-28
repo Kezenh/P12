@@ -1,0 +1,10 @@
+.performance {
+    width: 258px;
+    height: 263px;
+    background: #282D30;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 5px;
+}
