@@ -1,5 +1,12 @@
 import "../styles/nutrient.css"
 
+/**
+ * Create a Nutrient element
+ * @param { String } src
+ * @param { String } name
+ * @param { String } quantity
+ * @return { HTMLElement } 
+ */
 function Nutrient({ src, name, quantity }) {
     return (
         <div className="nutrient">

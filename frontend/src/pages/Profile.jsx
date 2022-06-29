@@ -11,9 +11,12 @@ import SessionAverage from "../components/SessionAverage"
 import Performance from "../components/Performance"
 import Score from "../components/Score"
 
+/**
+ * Create the Profile page
+ * @return { HTMLElement }
+ */
 function Profile() {
-
-    const userId = 18
+    const userId = "18"
     const [firstName, setFirstName] = useState("")
     const [score, setScore] = useState("")
     const [calorieCount, setCalorieCount] = useState("")
@@ -24,8 +27,11 @@ function Profile() {
     const [averages, setAverages] = useState([])
     const [activities, setActivities] = useState([])
 
+    /**
+     * Set variables (firstName, score, calorieCount, proteinCount, carbohydrateCount and lipidCount) using fetchUserDatas()
+     */
     async function setUser() {
-        const userDatas = await fetchUserDatas(18)
+        const userDatas = await fetchUserDatas(userId)
         setFirstName(userDatas.userInfos.firstName)
         let score = [{ value: userDatas.score }, { value: 1 - userDatas.score }]
         setScore(score)
@@ -35,17 +41,24 @@ function Profile() {
         setLipidCount(userDatas.keyData.lipidCount)
     }
 
+    /**
+     * Set the variable session using fetchActivityDatas()
+     */
     async function setActivity() {
         let sessions = await fetchActivityDatas(userId)
+        // eslint-disable-next-line
         sessions.map((session, index) => {
-            session.kcal = session.calories
             session.index = index + 1
         })
         setSessions(sessions)
     }
 
+    /**
+     * Set the variable averages using fetchAverageSessionsDatas()
+     */
     async function setAverageSessions() {
         let averages = await await fetchAverageSessionsDatas(userId)
+        // eslint-disable-next-line
         averages.map((average) => {
             switch (average.day) {
                 case 1:
@@ -77,9 +90,13 @@ function Profile() {
         setAverages(averages)
     }
 
+    /**
+     * Set the activities using fetchPerformanceDatas()
+     */
     async function setPerformance() {
         let activities = await fetchPerformanceDatas(userId)
-        activities.data.map((data, index) => {
+        // eslint-disable-next-line
+        activities.data.map((data) => {
             switch (data.kind) {
                 case 1:
                     data.kind = "Cardio"

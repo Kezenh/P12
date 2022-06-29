@@ -1,8 +1,18 @@
 import { XAxis, Tooltip, LineChart, Line } from 'recharts'
 import "../styles/sessionAverage.css"
 
+/**
+ * Create SessionAverage chart
+ * @param { Array<{day: String, sessionLength: Number}> } averages 
+ * @return { HTMLElement } 
+ */
 function SessionAverage({ averages }) {
 
+    /**
+     * Create the custom tooltip box when hovering SessionAverage chart
+     * @param { Array.<{value: Number}> } payload 
+     * @return { HTMLElement } 
+     */
     function customTooltipAverage({ payload }) {
         if (payload && payload.length) {
             return (
@@ -13,6 +23,11 @@ function SessionAverage({ averages }) {
         }
     }
 
+    /**
+     * Customize the dot of SessionAverage chart
+     * @param {*} props 
+     * @return { HTMLElement }
+     */
     function customizedActiveDot(props) {
         const { cx, cy } = props;
         return (

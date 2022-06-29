@@ -2,6 +2,10 @@ import { Link } from "react-router-dom"
 import "../styles/header.css"
 import logo from "../assets/logo.png"
 
+/**
+ * Create the header component
+ * @return { HTMLElement } 
+ */
 function Header() {
     return (
         <header>

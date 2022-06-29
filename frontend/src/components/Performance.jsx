@@ -1,6 +1,12 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts'
 import "../styles/performance.css"
 
+/**
+ * Create the performance chart
+ * @param { Object.<userId: Number, kind: Object.<1: String, 2: String, 3: String, 4: String, 5: String, 6: String>, data: Array.<{value: Number, kind: String}>> } activities 
+ * @param { String } firstName
+ * @return { HTMLElement } 
+ */
 function Performance({ activities, firstName }) {
     return (
         <div className="performance">

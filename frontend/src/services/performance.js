@@ -1,3 +1,8 @@
+/**
+ * Fetch performance datas 
+ * @param { String } userId 
+ * @return { Promise }
+ */
 async function fetchPerformanceDatas(userId) {
     return fetch("http://localhost:4000/user/" + userId + "/performance")
     .then((response) => response.json())

@@ -1,8 +1,18 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import "../styles/dailyActivity.css"
 
+/**
+ * Create the DailyActivity chart using sessions datas
+ * @param { Array.<{day: String, kilogram: Number, calories: Number, index: Number}> } sessions 
+ * @return { HTMLElement }
+ */
 function DailyActivity({ sessions }) {
 
+    /**
+     * Create the custom tooltip box when hovering DailyActivity chart
+     * @param { Array.<{value: Number}> } payload 
+     * @return { HTMLElement } 
+     */
     function customTooltipDaily({ payload }) {
         if (payload && payload.length) {
             return (
@@ -44,7 +54,7 @@ function DailyActivity({ sessions }) {
                 <YAxis orientation="right" tickLine={false} axisLine={false} tick={{ fill: '#9B9EAC' }} tickCount={20} />
                 <Tooltip content={customTooltipDaily} />
                 <Bar dataKey="kilogram" fill="#282D30" barSize={7} radius={[3, 3, 0, 0]} />
-                <Bar dataKey="kcal" fill="#E60000" barSize={7} radius={[3, 3, 0, 0]} />
+                <Bar dataKey="calories" fill="#E60000" barSize={7} radius={[3, 3, 0, 0]} />
             </BarChart>
         </div>
     )

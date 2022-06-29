@@ -1,6 +1,11 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, Radar, RadarChart, PolarGrid, PolarAngleAxis, PieChart, Pie, Cell } from 'recharts'
+import { PieChart, Pie, Cell } from 'recharts'
 import "../styles/score.css"
 
+/**
+ * Create score chart
+ * @param { Array.<{value: Number}> } score 
+ * @return { HTMLElement }
+ */
 function Score({ score }) {
     return (
         <div className="score">

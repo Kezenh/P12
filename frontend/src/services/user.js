@@ -1,3 +1,8 @@
+/**
+ * Fetch user datas 
+ * @param { String } userId 
+ * @return { Promise }
+ */
 async function fetchUserDatas(userId) {
     return fetch("http://localhost:4000/user/" + userId)
     .then((response) => response.json())

@@ -5,6 +5,10 @@ import swim from "../assets/swim.png"
 import weight from "../assets/weight.png"
 import zen from "../assets/zen.png"
 
+/**
+ * Create the Vertical component
+ * @return { HTMLElement } 
+ */
 function Vertical() {
     return (
         <div className="vertical">
