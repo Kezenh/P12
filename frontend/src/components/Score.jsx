@@ -1,3 +1,4 @@
+import propTypes from "prop-types"
 import { PieChart, Pie, Cell } from 'recharts'
 import "../styles/score.css"
 
@@ -29,6 +30,10 @@ function Score({ score }) {
             </PieChart>
         </div>
     )
+}
+
+Score.propTypes = {
+    score: propTypes.array.isRequired
 }
 
 export default Score

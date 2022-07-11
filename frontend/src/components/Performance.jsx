@@ -1,3 +1,4 @@
+import propTypes from "prop-types"
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from 'recharts'
 import "../styles/performance.css"
 
@@ -32,6 +33,11 @@ function Performance({ activities, firstName }) {
             </RadarChart>
         </div>
     )
+}
+
+Performance.propTypes = {
+    activities: propTypes.object.isRequired,
+    firstName: propTypes.string.isRequired
 }
 
 export default Performance

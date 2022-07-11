@@ -1,3 +1,4 @@
+import propTypes from "prop-types"
 import { XAxis, Tooltip, LineChart, Line } from 'recharts'
 import "../styles/sessionAverage.css"
 
@@ -53,6 +54,10 @@ function SessionAverage({ averages }) {
             </LineChart>
         </div>
     )
+}
+
+SessionAverage.propTypes = {
+    averages: propTypes.array.isRequired
 }
 
 export default SessionAverage

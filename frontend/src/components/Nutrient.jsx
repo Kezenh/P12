@@ -1,3 +1,4 @@
+import propTypes from "prop-types"
 import "../styles/nutrient.css"
 
 /**
@@ -17,6 +18,12 @@ function Nutrient({ src, name, quantity }) {
             </div>
         </div>
     )
+}
+
+Nutrient.propTypes = {
+    src: propTypes.string.isRequired,
+    name: propTypes.string.isRequired,
+    quantity: propTypes.string.isRequired
 }
 
 export default Nutrient
